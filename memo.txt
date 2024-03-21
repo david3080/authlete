@@ -1,0 +1,16 @@
+認可エンドポイント：
+curl -s -X POST https://api.authlete.com/api/auth/authorization \
+-u '226794730359512:HvyI0QrHOF6m0LMwm73R-s7cLJdBsC-6w0M2fENMtl4' \
+-H 'Content-Type: application/json' \
+-d '{ "parameters": "redirect_uri=https://api.authlete.com/api/mock/redirection/226794730359512&response_type=code&client_id=182119080503184&scope=openid" }'
+
+curl -s -X POST https://api.authlete.com/api/auth/authorization/issue \
+-u '226794730359512:HvyI0QrHOF6m0LMwm73R-s7cLJdBsC-6w0M2fENMtl4' \
+-H 'Content-Type: application/json' \
+-d '{ "ticket": "11KPThyPuyosCDSaDfppg7Z0Dci5eTVqsIMlLRAt5no", "subject": "testuser01" }' | jq .
+
+トークンエンドポイント：
+curl -s -X POST https://api.authlete.com/api/auth/token \
+-u '226794730359512:HvyI0QrHOF6m0LMwm73R-s7cLJdBsC-6w0M2fENMtl4' \
+-H 'Content-Type: application/json' \
+-d '{ "clientId": "182119080503184", "clientSecret": "aD-tP1VyQyUMID2O2iBHL-pSMtQmMBdyaYeCawDa4V-9qWVOGdv2oE39bm5Tg7goyYkv7gQGWZA0YC9ebhyPOA", "parameters": "grant_type=authorization_code&redirect_uri=https://api.authlete.com/api/mock/redirection/226794730359512&code=AlT0wUdbi4v1Li-r_4BA90eBihq1ZjMe9niHsc0GC9M" }' | jq .
